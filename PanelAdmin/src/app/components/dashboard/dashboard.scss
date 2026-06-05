@@ -1,0 +1,198 @@
+/* src/app/components/dashboard/dashboard.scss */
+
+// Importamos configuración de colores (opcional si ya usas var(--))
+@use "sass:color";
+
+.dashboard-layout {
+  display: flex;
+  height: 100vh; /* Ocupa toda la pantalla */
+  background-color: var(--bg-body);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden; /* Evita doble scroll */
+}
+
+/* --- SIDEBAR ESTILO SAAS --- */
+.sidebar {
+  width: 260px;
+  background-color: #1e293b; /* Azul muy oscuro (Casi negro) */
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  z-index: 20;
+
+  .sidebar-header {
+    padding: 1.5rem;
+    background-color: #0f172a; /* Encabezado más oscuro */
+    border-bottom: 1px solid #334155;
+    text-align: center;
+
+    .logo-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { 
+      color: white; 
+      font-size: 1.1rem; 
+      margin: 0; 
+      font-weight: 700; 
+      letter-spacing: 0.5px; 
+    }
+    .badge-role {
+      font-size: 0.7rem;
+      background: #334155;
+      padding: 2px 8px;
+      border-radius: 10px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    overflow-y: auto; /* Scroll solo en el menú si es muy largo */
+    padding: 1.5rem 1rem;
+
+    .nav-section {
+      margin-bottom: 2rem;
+
+      h4 {
+        color: #64748b;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        padding-left: 0.75rem;
+        letter-spacing: 0.05em;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li { margin-bottom: 0.25rem; }
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: #cbd5e1;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+        font-weight: 500;
+
+        .icon {
+          margin-right: 12px;
+          font-size: 1.1rem;
+          opacity: 0.8;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.08);
+          color: white;
+          transform: translateX(4px); /* Pequeña animación */
+        }
+
+        /* CLASE ACTIVA (Cuando estás en esa página) */
+        &.active {
+          background: linear-gradient(90deg, var(--admin-primary) 0%, var(--admin-accent) 100%);
+          color: white;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          
+          .icon { opacity: 1; }
+        }
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid #334155;
+    background-color: #0f172a;
+
+    .btn-logout {
+      width: 100%;
+      background-color: transparent;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      justify-content: center;
+      
+      &:hover {
+        background-color: #ef4444; /* Rojo al salir */
+        border-color: #ef4444;
+        color: white;
+      }
+    }
+  }
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #f8fafc; /* Gris muy claro */
+
+  .top-bar {
+    background: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+
+    .welcome-text {
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    .date-badge {
+      background: #f1f5f9;
+      color: var(--admin-primary);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid #e2e8f0;
+    }
+  }
+
+  .content-wrapper {
+    flex: 1;
+    overflow-y: auto; /* Scroll aquí, no en el body */
+    padding: 2rem;
+    
+    /* Animación de entrada suave para las páginas */
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE (Móviles) */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    
+    .sidebar-nav { display: none; } /* Ocultar menú en móvil por simplicidad */
+    /* Aquí idealmente añadirías un botón de "Hamburguesa" para mostrarlo */
+  }
+  .main-content {
+    height: 100%;
+  }
+}

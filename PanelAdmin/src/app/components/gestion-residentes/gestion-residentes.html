@@ -1,0 +1,18 @@
+<h3>Crear Nuevo Residente</h3>
+<form (ngSubmit)="onSubmit()" class="admin-form">
+  <div>
+    <label for="nombre">Nombre Completo:</label>
+    <input type="text" [(ngModel)]="nuevoResidente.nombreCompleto" name="nombreCompleto" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)]="nuevoResidente.email" name="email" required>
+  </div>
+  <div>
+    <label for="password">Contraseña Provisional:</label>
+    <input type="text" [(ngModel)]="nuevoResidente.password" name="password" required>
+  </div>
+
+  <button type="submit">Crear Residente</button>
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+</form>

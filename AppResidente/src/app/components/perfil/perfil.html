@@ -1,0 +1,27 @@
+<div class="perfil-container">
+  
+  <div class="perfil-header">
+    <div class="avatar-circle">
+      {{ iniciales }}
+    </div>
+    <h2>{{ perfil?.nombreCompleto || 'Cargando...' }}</h2>
+    <span class="badge-rol">{{ (perfil?.rol || 'Usuario') | titlecase }}</span>
+  </div>
+
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+
+  <div *ngIf="perfil" class="perfil-details">
+    <div class="detail-item">
+      <label>Correo Electrónico</label>
+      <div class="value">{{ perfil.email }}</div>
+    </div>
+    <div class="detail-item">
+      <label>ID de Usuario</label>
+      <div class="value">#{{ perfil.idUsuario }}</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/home" class="btn-back">← Volver al Inicio</a>
+  </div>
+</div>

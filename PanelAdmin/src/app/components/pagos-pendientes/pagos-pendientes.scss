@@ -1,0 +1,63 @@
+/* src/app/components/pagos-pendientes/pagos-pendientes.scss */
+
+.page-header {
+  margin-bottom: 1.5rem;
+  
+  h3 { margin-bottom: 0.2rem; }
+  p { color: #64748b; margin: 0; font-size: 0.9rem; }
+}
+
+.id-badge {
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  
+  strong { color: var(--admin-primary); }
+  small { color: #94a3b8; }
+}
+
+.ref-code {
+  background: #fffbeb;
+  color: #b45309;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  border: 1px solid #fcd34d;
+}
+
+.monto {
+  color: #059669; /* Verde dinero */
+  font-size: 1rem;
+}
+
+.btn-link {
+  /* Estilo específico para el link de ver foto si no usas el global */
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: #3b82f6;
+  background: #eff6ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #3b82f6;
+    color: white;
+  }
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}

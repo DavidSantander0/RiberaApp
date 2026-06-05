@@ -1,0 +1,25 @@
+<h3>Generar Multa</h3>
+<form (ngSubmit)="onSubmit()" class="admin-form">
+  <div>
+    <label for="propiedad">Seleccionar Propiedad:</label>
+    <select [(ngModel)]="nuevaMulta.idPropiedad" name="idPropiedad" required>
+      <option [ngValue]="null" disabled>Seleccione una casa...</option>
+      <option *ngFor="let prop of propiedades" [value]="prop.idPropiedad">
+        {{ prop.numeroCasa }} (Propietario: {{ prop.propietario }})
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="monto">Monto de la Multa (Ej: 25.50):</label>
+    <input type="number" [(ngModel)]="nuevaMulta.monto" name="monto" required>
+  </div>
+
+  <div>
+    <label for="descripcion">Motivo / Descripción de la Multa:</label>
+    <textarea [(ngModel)]="nuevaMulta.descripcion" name="descripcion" rows="3" required></textarea>
+  </div>
+
+  <button type="submit">Generar Multa</button>
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+</form>

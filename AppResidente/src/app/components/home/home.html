@@ -1,0 +1,92 @@
+<div class="header">
+  <h2>Bienvenido, Residente</h2>
+  <div>
+    <a routerLink="/perfil" class="link-perfil">Mi Perfil</a> <button (click)="cerrarSesion()">Cerrar Sesión</button>
+  </div>
+</div>
+<hr>
+
+<div class="app-container">
+
+  <div class="deudas-section">
+    <h3>Mis Deudas Pendientes</h3>
+    
+    <div *ngIf="mensajeDeudas" class="mensaje">{{ mensajeDeudas }}</div>
+
+    <table *ngIf="deudas.length > 0">
+  <thead>
+    <tr>
+      <th>Pagar</th>
+      <th>Descripción</th>
+      <th>Monto</th>
+      <th>Estado</th> </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deuda of deudas" 
+        [class.en-validacion]="deuda.estado === 'en_validacion'"
+        [class.pagado]="deuda.estado === 'pagado'">
+      <td>
+        <input 
+          type="checkbox" 
+          [(ngModel)]="deuda.seleccionado"
+          (change)="actualizarSeleccion()"
+          [disabled]="deuda.estado !== 'pendiente'"> </td>
+      <td>{{ deuda.descripcion }}</td>
+      <td>{{ deuda.monto | currency:'USD' }}</td>
+
+      <td>{{ deuda.estado | titlecase }}</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <div class="reporte-section">
+    <h3>Reportar Nuevo Pago</h3>
+    
+    <form (ngSubmit)="onSubmitReporte()">
+      
+      <div class="total-a-pagar">
+        <strong>Total Seleccionado:</strong>
+        <span class="monto">
+          {{ reporteData.montoTotal | currency:'USD' }}
+        </span>
+      </div>
+
+      <div>
+        <label for="fecha">Fecha de Transferencia:</label>
+        <input 
+          type="date" 
+          id="fecha"
+          [(ngModel)]="reporteData.fechaTransferencia"
+          name="fechaTransferencia" required>
+      </div>
+
+      <div>
+        <label for="referencia">N° de Referencia:</label>
+        <input 
+          type="text" 
+          id="referencia"
+          [(ngModel)]="reporteData.numeroReferencia"
+          name="numeroReferencia" required>
+      </div>
+      
+      <div>
+        <label for="comprobante">Adjuntar Comprobante:</label>
+        <input 
+          type="file" 
+          id="comprobante"
+          (change)="onFileSelected($event)" 
+          accept="image/*" required>
+      </div>
+      
+      <button 
+        type="submit" 
+        [disabled]="reporteData.montoTotal === 0 || !archivoComprobante">
+        Reportar Pago
+      </button>
+
+      <div *ngIf="mensajeReporte" class="mensaje">{{ mensajeReporte }}</div>
+    </form>
+  </div>
+
+</div>

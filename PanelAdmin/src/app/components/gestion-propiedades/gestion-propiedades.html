@@ -1,0 +1,20 @@
+<h3>Crear Nueva Propiedad (Casa)</h3>
+<form (ngSubmit)="onSubmit()" class="admin-form">
+  <div>
+    <label for="numero">Número de Casa (Ej: A-101):</label>
+    <input type="text" [(ngModel)]="nuevaPropiedad.numeroCasa" name="numeroCasa" required>
+  </div>
+
+  <div>
+    <label for="propietario">Asignar a Residente:</label>
+    <select [(ngModel)]="nuevaPropiedad.idPropietario" name="idPropietario" required>
+      <option [ngValue]="null" disabled>Seleccione un residente...</option>
+      <option *ngFor="let res of residentes" [value]="res.idUsuario">
+        {{ res.nombreCompleto }} ({{ res.email }})
+      </option>
+    </select>
+  </div>
+
+  <button type="submit">Crear Propiedad</button>
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+</form>

@@ -1,0 +1,61 @@
+<div class="page-header">
+  <div class="header-content">
+    <h3>📋 Pagos Pendientes</h3>
+    <p>Valida las transferencias reportadas por los residentes.</p>
+  </div>
+  </div>
+
+<div *ngIf="mensaje" class="mensaje" [class.info]="!mensaje.includes('Error')" [class.error]="mensaje.includes('Error')">
+  {{ mensaje }}
+</div>
+
+<div class="table-container" *ngIf="pagos.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Residente / Fecha</th>
+        <th>Referencia</th>
+        <th>Monto</th>
+        <th>Comprobante</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of pagos">
+        <td>
+          <span class="id-badge">#{{ pago.idReporte }}</span>
+        </td>
+        <td>
+          <div class="user-info">
+            <strong>{{ pago.usuario }}</strong>
+            <small>{{ pago.fechaTransferencia | date:'mediumDate' }}</small>
+          </div>
+        </td>
+        <td>
+          <code class="ref-code">{{ pago.numeroReferencia }}</code>
+        </td>
+        <td>
+          <strong class="monto">{{ pago.montoTransferido | currency:'USD' }}</strong>
+        </td>
+        <td>
+          <a *ngIf="pago.urlComprobante" 
+             [href]="'https://localhost:7011' + pago.urlComprobante" 
+             target="_blank" 
+             class="btn-link">
+             👁️ Ver Foto
+          </a>
+          <span *ngIf="!pago.urlComprobante" class="text-muted">Sin foto</span>
+        </td>
+        <td class="actions-cell">
+          <button (click)="onValidar(pago.idReporte)" class="btn-validar" title="Aprobar Pago">
+            ✅ Aprobar
+          </button>
+          <button (click)="onRechazar(pago.idReporte)" class="btn-rechazar" title="Rechazar Pago">
+            ❌ Rechazar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,302 @@
+/* src/app/components/home/home.scss */
+
+// Importamos configuración de colores
+@use "sass:color";
+
+// --- HEADER SUPERIOR ---
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  h2 {
+    color: #10b981; /* Verde Residente */
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .link-perfil {
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+
+    &:hover { color: #10b981; }
+    
+    // Icono de usuario
+    &::before {
+      content: '👤';
+      font-size: 1.1rem;
+    }
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+    padding: 0.5rem 1rem;
+    
+    &:hover {
+      background: #f3f4f6;
+      color: #ef4444; /* Rojo al salir */
+      border-color: #ef4444;
+    }
+  }
+}
+
+// --- LAYOUT PRINCIPAL (GRID) ---
+.app-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 380px; /* Tabla flexible, Formulario fijo */
+  gap: 2rem;
+  align-items: start;
+}
+
+// --- SECCIÓN DE DEUDAS (IZQUIERDA) ---
+.deudas-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f3f4f6;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    &::before { content: '📄'; }
+  }
+}
+
+// Estilos específicos de la tabla del residente
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Espacio entre filas */
+  margin-top: 1rem;
+
+  thead th {
+    background: transparent;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+    border: none;
+  }
+
+  tbody tr {
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f3f4f6;
+    border-radius: 8px; /* Filas redondeadas */
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      z-index: 1;
+      position: relative;
+    }
+
+    td {
+      padding: 1.2rem 1rem;
+      border: 1px solid #f3f4f6;
+      border-left: none;
+      border-right: none;
+      
+      &:first-child { 
+        border-left: 1px solid #f3f4f6; 
+        border-top-left-radius: 8px; 
+        border-bottom-left-radius: 8px; 
+      }
+      &:last-child { 
+        border-right: 1px solid #f3f4f6; 
+        border-top-right-radius: 8px; 
+        border-bottom-right-radius: 8px; 
+      }
+    }
+  }
+
+  /* Checkbox Grande */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #10b981;
+  }
+
+  /* ESTADOS DE FILAS */
+  
+  /* 1. Pendiente (Normal) */
+  tr.pendiente {
+    border-left: 4px solid #3b82f6; /* Borde azul */
+  }
+
+  /* 2. En Validación (Amarillo) */
+  tr.en-validacion {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+    
+    td span { /* Badge */
+      background: #fef3c7;
+      color: #d97706;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+  }
+
+  /* 3. Pagado (Verde y tachado) */
+  tr.pagado {
+    background-color: #ecfdf5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+    opacity: 0.7;
+
+    td span { /* Badge */
+      background: #d1fae5;
+      color: #059669;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    
+    td:nth-child(2), td:nth-child(3) { /* Descripción y Monto */
+      text-decoration: line-through;
+    }
+  }
+}
+
+// --- SECCIÓN DE FORMULARIO (DERECHA) ---
+.reporte-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  position: sticky; /* Se queda fijo al hacer scroll */
+  top: 6rem;
+  border: 1px solid #f3f4f6;
+
+  h3 {
+    margin-top: 0;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    &::before { content: '💸'; }
+  }
+
+  /* Caja del Total */
+  .total-a-pagar {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+
+    strong { display: block; font-size: 0.9rem; text-transform: uppercase; opacity: 0.9; margin-bottom: 5px; }
+    .monto { font-size: 2.2rem; font-weight: 800; display: block; }
+  }
+
+  /* Inputs del formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #374151;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background-color: #f9fafb;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      box-sizing: border-box;
+
+      &:focus {
+        background-color: white;
+        border-color: #10b981;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      }
+    }
+
+    /* Botón Principal */
+    button[type="submit"] {
+      background-color: #10b981;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+
+      &:hover:not(:disabled) {
+        background-color: #059669;
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background-color: #e5e7eb;
+        color: #9ca3af;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// RESPONSIVE
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr; /* Una columna en móvil */
+  }
+  .reporte-section {
+    position: static;
+    order: -1; /* Pone el formulario arriba en móviles */
+  }
+}

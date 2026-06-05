@@ -1,0 +1,19 @@
+<h3>Lista de Propiedades</h3>
+<div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+<table *ngIf="propiedades.length > 0">
+  <thead>
+    <tr>
+      <th>ID Casa</th>
+      <th>Número de Casa</th>
+      <th>Estado</th>
+      <th>Propietario Asignado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prop of propiedades">
+      <td>{{ prop.idPropiedad }}</td>
+      <td>{{ prop.numeroCasa }}</td>
+      <td>{{ prop.estado }}</td>
+      <td>{{ prop.propietario }}</td> </tr>
+  </tbody>
+</table>

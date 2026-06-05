@@ -1,0 +1,27 @@
+<div class="login-wrapper">
+  <div class="glass-card">
+    <div class="logo-area">
+      <div class="building-icon">🏢</div>
+      <h2>{{ loginData.email.includes('admin') ? 'Administración' : 'Residentes' }}</h2>
+      <p>Bienvenido a tu Conjunto</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="loginData.email" name="email" placeholder="ejemplo@correo.com" required>
+      </div>
+      
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input type="password" [(ngModel)]="loginData.password" name="password" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit">Ingresar</button>
+    </form>
+
+    <div *ngIf="errorMensaje" class="error-badge">
+      ⚠️ {{ errorMensaje }}
+    </div>
+  </div>
+</div>

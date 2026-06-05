@@ -1,0 +1,36 @@
+<div class="login-wrapper">
+  <div class="glass-card">
+    <div class="logo-area">
+      <div class="building-icon">🛡️</div> <h2>Administración</h2>
+      <p>Panel de Control y Gestión</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label>Email Corporativo</label>
+        <input 
+          type="email" 
+          [(ngModel)]="loginData.email" 
+          name="email" 
+          placeholder="admin@ribera.com" 
+          required>
+      </div>
+      
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input 
+          type="password" 
+          [(ngModel)]="loginData.password" 
+          name="password" 
+          placeholder="••••••••" 
+          required>
+      </div>
+
+      <button type="submit">Acceder al Panel</button>
+    </form>
+
+    <div *ngIf="errorMensaje" class="error-badge">
+      ⚠️ {{ errorMensaje }}
+    </div>
+  </div>
+</div>

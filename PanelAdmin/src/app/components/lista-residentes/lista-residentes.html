@@ -1,0 +1,58 @@
+<div class="page-header">
+  <div class="header-content">
+    <h3>👥 Directorio de Residentes</h3>
+    <p>Gestiona los usuarios registrados en el conjunto.</p>
+  </div>
+  
+  <a routerLink="/dashboard/residentes/crear" class="btn-create" style="background: #2c3e50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
+    + Nuevo Residente
+  </a>
+</div>
+
+<div *ngIf="mensaje" class="mensaje" [class.info]="!mensaje.includes('Error')" [class.error]="mensaje.includes('Error')">
+  {{ mensaje }}
+</div>
+
+<div class="table-container" *ngIf="residentes.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 80px;">ID</th>
+        <th>Nombre Completo</th>
+        <th>Correo Electrónico</th>
+        <th style="width: 200px; text-align: right;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let res of residentes">
+        <td>
+          <span class="id-badge" style="color: #64748b; font-weight: bold;">#{{ res.idUsuario }}</span>
+        </td>
+        <td>
+          <div class="avatar-cell" style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 32px; height: 32px; background: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+              {{ res.nombreCompleto?.charAt(0) | uppercase }}
+            </div>
+            <span>{{ res.nombreCompleto }}</span>
+          </div>
+        </td>
+        <td class="email-cell">
+          {{ res.email }}
+        </td>
+        <td style="text-align: right;">
+          <button (click)="onEditar(res.idUsuario)" style="background-color: #f59e0b; color: white; margin-right: 5px; border:none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+            ✏️ Editar
+          </button>
+
+          <button (click)="onEliminar(res.idUsuario, res.nombreCompleto)" style="background-color: #ef4444; color: white; border:none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+            🗑️ Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="residentes.length === 0" style="padding: 2rem; text-align: center; color: #64748b;">
+  No hay residentes registrados.
+</div>

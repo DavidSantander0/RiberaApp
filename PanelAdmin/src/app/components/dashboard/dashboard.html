@@ -1,0 +1,84 @@
+<div class="dashboard-layout">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-icon">🛡️</div>
+      <h2>Admin Panel</h2>
+      <span class="badge-role">Administrador</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      <div class="nav-section">
+        <h4>Finanzas</h4>
+        <ul>
+          <li>
+            <a routerLink="pagos" routerLinkActive="active">
+              <span class="icon">💰</span> Pagos Pendientes
+            </a>
+          </li>
+          <li>
+            <a routerLink="multas/crear" routerLinkActive="active">
+              <span class="icon">⚠️</span> Crear Multa
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h4>Directorio</h4>
+        <ul>
+          <li>
+            <a routerLink="residentes/lista" routerLinkActive="active">
+              <span class="icon">👥</span> Ver Residentes
+            </a>
+          </li>
+          <li>
+            <a routerLink="propiedades/lista" routerLinkActive="active">
+              <span class="icon">🏠</span> Ver Propiedades
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h4>Registros</h4>
+        <ul>
+          <li>
+            <a routerLink="residentes/crear" routerLinkActive="active">
+              <span class="icon">➕</span> Nuevo Residente
+            </a>
+          </li>
+          <li>
+            <a routerLink="propiedades/crear" routerLinkActive="active">
+              <span class="icon">➕</span> Nueva Propiedad
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <button (click)="cerrarSesion()" class="btn-logout">
+        <span class="icon">🚪</span> Cerrar Sesión
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <div class="welcome-text">
+        Bienvenido al sistema de gestión <strong>Ribera App</strong>
+      </div>
+      <div class="date-badge">
+        📅 {{ now | date:'longDate' }}
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+</div>
