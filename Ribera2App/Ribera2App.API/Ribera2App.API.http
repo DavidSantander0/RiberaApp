@@ -1,0 +1,6 @@
+@Ribera2App.API_HostAddress = http://localhost:5189
+
+GET {{Ribera2App.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

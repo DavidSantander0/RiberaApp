@@ -1,0 +1,228 @@
+[
+  {
+    "ContainingType": "Ribera2App.API.Controllers.CobrosController",
+    "Method": "CrearMulta",
+    "RelativePath": "api/Cobros/crear-multa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "multaDto",
+        "Type": "Ribera2App.API.DTOs.MultaCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.CobrosController",
+    "Method": "GenerarAlicuotasMensuales",
+    "RelativePath": "api/Cobros/generar-alicuotas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.CobrosController",
+    "Method": "GetMisDeudas",
+    "RelativePath": "api/Cobros/mis-deudas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PagosController",
+    "Method": "GetMisReportesDePago",
+    "RelativePath": "api/Pagos/mis-reportes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PagosController",
+    "Method": "GetPagosPendientes",
+    "RelativePath": "api/Pagos/pendientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PagosController",
+    "Method": "RechazarPago",
+    "RelativePath": "api/Pagos/rechazar/{idReporte}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idReporte",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PagosController",
+    "Method": "ReportarPago",
+    "RelativePath": "api/Pagos/reportar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FechaTransferencia",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "MontoTransferido",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "NumeroReferencia",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Comprobante",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "IdsCobrosPagados",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PagosController",
+    "Method": "ValidarPago",
+    "RelativePath": "api/Pagos/validar/{idReporte}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idReporte",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PropiedadesController",
+    "Method": "GetPropiedades",
+    "RelativePath": "api/Propiedades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.PropiedadesController",
+    "Method": "CrearPropiedad",
+    "RelativePath": "api/Propiedades",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propiedadDto",
+        "Type": "Ribera2App.API.DTOs.PropiedadCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.UsuariosController",
+    "Method": "LoginUsuario",
+    "RelativePath": "api/Usuarios/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "Ribera2App.API.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.UsuariosController",
+    "Method": "GetMiPerfil",
+    "RelativePath": "api/Usuarios/perfil",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.UsuariosController",
+    "Method": "RegistrarUsuario",
+    "RelativePath": "api/Usuarios/registro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDto",
+        "Type": "Ribera2App.API.DTOs.RegistroUsuarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ribera2App.API.Controllers.UsuariosController",
+    "Method": "GetResidentes",
+    "RelativePath": "api/Usuarios/residentes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

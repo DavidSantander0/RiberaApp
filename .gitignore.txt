@@ -1,0 +1,10 @@
+# Exclusiones para los clientes Angular
+**/node_modules/
+**/.angular/
+**/dist/
+
+# Exclusiones para la API .NET
+**/bin/
+**/obj/
+**/appsettings.Development.json
+**/.vs/
